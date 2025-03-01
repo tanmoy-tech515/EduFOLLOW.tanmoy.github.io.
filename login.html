@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user-login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="#">
+            <h2>EDUFOLLOW-Login</h2>
+            <div class="input-field">
+                <input type="email" required>
+                <label>Enter your Email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" required>
+                <label>Enter your password</label>
+                <i class="uil uil-eye-slash" id="togglePassword"></i>
+            </div>
+            
+            <div class="forget">
+                <label for="remember">
+                    <input type="checkbox" id="remember">
+                    <p>Remember Me</p>
+                </label>
+                <a href="#">Forgot Your Password?</a>
+            </div>
+
+            <button type="submit"><a href="index.html"></a>Log In</button>
+
+            <div class="social-login">
+                <p>Or login with</p>
+                <div class="social-buttons">
+                    <button type="button" class="facebook">
+                        <i class="uil uil-facebook-f"></i> Login with Facebook
+                    </button>
+                    <button type="button" class="linkedin">
+                        <i class="uil uil-Google"></i> Login with Google
+                    </button>
+                </div>
+            </div>
+
+            <div class="sign-up">
+                <p>if You  have an account? <a href="sign-up.html" class="sign-up link">Sign-up</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

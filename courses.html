@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #ff4a57;
+            text-transform: uppercase;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search, .sort-options select {
+            width: 45%;
+            padding: 12px;
+            border: 2px solid #ff4a57;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .course {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border-left: 8px solid #ff4a57;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .course:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course h2 {
+            font-size: 26px;
+            color: #ff4a57;
+            margin-bottom: 10px;
+        }
+        
+        .course p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .learn-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 18px;
+            background: #ff4a57;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .learn-more:hover {
+            background: #d83542;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Discover Our Courses</h1>
+        
+        <div class="search-container">
+            <input type="text" id="search" class="search" placeholder="Search courses...">
+            <select id="sort">
+                <option value="default">Sort by</option>
+                <option value="asc">Title (A-Z)</option>
+                <option value="desc">Title (Z-A)</option>
+            </select>
+        </div>
+        
+        <div id="courseList"></div>
+    </div>
+
+    <script>
+        const courses = [
+            { title: "Web Development", desc: "Master front-end and back-end development with modern technologies like React, Vue, and Node.js.", link: "https://www.w3schools.com" },
+            { title: "Data Science", desc: "Learn data analysis, machine learning, and AI with Python, R, and TensorFlow.", link: "https://www.coursera.org/" },
+            { title: "Graphic Design", desc: "Create stunning designs with Photoshop, Illustrator, and UI/UX principles.", link: "https://www.udemy.com/" },
+        ];
+
+        const courseList = document.getElementById("courseList");
+        const searchInput = document.getElementById("search");
+        const sortSelect = document.getElementById("sort");
+
+        function displayCourses(filter = "", sort = "default") {
+            let filteredCourses = courses.filter(c => c.title.toLowerCase().includes(filter.toLowerCase()));
+            
+            if (sort === "asc") filteredCourses.sort((a, b) => a.title.localeCompare(b.title));
+            else if (sort === "desc") filteredCourses.sort((a, b) => b.title.localeCompare(a.title));
+            
+            courseList.innerHTML = "";
+            filteredCourses.forEach(course => {
+                const courseDiv = document.createElement("div");
+                courseDiv.className = "course";
+                courseDiv.innerHTML = `<h2>${course.title}</h2><p>${course.desc}</p><a href='${course.link}' target='_blank' class='learn-more'>Learn More</a>`;
+                courseList.appendChild(courseDiv);
+            });
+        }
+
+        searchInput.addEventListener("input", () => displayCourses(searchInput.value, sortSelect.value));
+        sortSelect.addEventListener("change", () => displayCourses(searchInput.value, sortSelect.value));
+        
+        displayCourses();
+    </script>
+</body>
+</html>
